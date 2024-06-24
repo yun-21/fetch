@@ -1,4 +1,5 @@
 const fet = fetch("https://pokeapi.co/api/v2/")
-fet.then((test)=>{
-  console.log(test)
-});
+const check = async() => {
+  console.log(await fet)
+}
+check()
