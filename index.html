@@ -9,11 +9,23 @@
 
 <body>
 
-    <input type="text" id="ss" name="ss">
+    <input type="text" id="ss" name="ss" placeholder="아무거나 적으시오.">
     <input type="submit" placeholder="보내기">
     <script>
         const ss = document.getElementById("ss");
-        fetch()
+        fetch("https://localhost:8080/test")
+        .then(response => {
+            if(!response.ok){
+                throw new Error('Network response not ok')
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error=>{
+            console.error(error);
+        })
     </script>
 </body>
 
