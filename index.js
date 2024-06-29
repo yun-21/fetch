@@ -23,8 +23,8 @@ const server = http.createServer((req,res)=>{
                 body += chunk
             });
             req.on('end',()=>{
-                const all = new URLSearchParams(body);
-                const id = all.get("ss")
+                const all = JSON.parse(body);
+                const id = all.ss;
                 const html = `<h1>${id}</h1>`
                 console.log(id);
                 res.statusCode=200;
