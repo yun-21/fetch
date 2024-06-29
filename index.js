@@ -18,8 +18,6 @@ const server = http.createServer((req,res)=>{
         }
     } else if(req.method==='POST'){
         if(req.url === '/test'){
-            res.statusCode=200;
-            res.setHeader("Content-Type","application/x-www-form-urlencoded; chrset=utf-8")
             let body="";
             req.on('data',(chunk)=>{
                 body += chunk
@@ -29,10 +27,17 @@ const server = http.createServer((req,res)=>{
                 const id = all.get("ss")
                 const html = `<h1>${id}</h1>`
                 console.log(id);
+                res.statusCode=200;
+                res.setHeader("Content-Type","application/json; chrset=utf-8")
                 res.write(html)
                 res.end()
             })
         }
     }
 })
-server.listen(8080)
+server.listen(8080,(err)=>{
+    if(err){
+        console.error(err);
+    }
+    console.log("http://localhost:8080")
+})
