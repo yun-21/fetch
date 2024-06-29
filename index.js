@@ -25,11 +25,11 @@ const server = http.createServer((req,res)=>{
             req.on('end',()=>{
                 const all = JSON.parse(body);
                 const id = all.ss;
-                const html = `<h1>${id}</h1>`
-                console.log(id);
+                // const html = `<h1>${id}</h1>`
+                // console.log(id);
                 res.statusCode=200;
                 res.setHeader("Content-Type","application/json; chrset=utf-8")
-                res.write(html)
+                res.write(id)
                 res.end()
             })
         }
