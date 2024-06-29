@@ -10,22 +10,35 @@
 <body>
 
     <input type="text" id="ss" name="ss" placeholder="아무거나 적으시오.">
-    <input type="submit" placeholder="보내기">
+    <button id="submit">보내기</button>
+    <div id="content"></div>
     <script>
         const ss = document.getElementById("ss");
-        fetch("https://localhost:8080/test")
-        .then(response => {
-            if(!response.ok){
-                throw new Error('Network response not ok')
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error=>{
-            console.error(error);
-        })
+        const btn = document.getElementById("submit");
+        const content = document.getElementById("content");
+        btn.addEventListener('click', () => {
+            const value = ss.value;
+            fetch("http://localhost:8080/test", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
+                },
+                body: JSON.stringify({ ss: value })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response not ok');
+                }
+                return response.text(); // 서버에서 HTML 형식으로 응답을 받음
+            })
+            .then(data => {
+                console.log(data);
+                content.innerHTML=`<h3>${data}</h3>`; // 서버에서 받은 데이터를 페이지에 삽입
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        });
     </script>
 </body>
 
