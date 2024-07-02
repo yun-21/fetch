@@ -28,7 +28,8 @@
         Map(allData,'name')
         btn.addEventListener('click',()=>{
             fetch("/data")
-            .then()
+            .then(response => response.json())
+            .then(json => h3.innerText = json.message)
 
         })
     </script>
