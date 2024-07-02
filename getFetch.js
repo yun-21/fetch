@@ -1,6 +1,5 @@
-import http from 'http'
-import fs from 'fs'
-let port = 8080;
+const http = require('http')
+const fs = require('fs')
 const getUrl = {
   filePath : (url)=>{
     let filePath;
@@ -20,16 +19,16 @@ const server = http.createServer((req,res)=>{
     fs.readFile(url, (err,data)=>{
       if(err){
         if(err.code === "ENOENT"){
-          response.writeHead(404, {"Content-Type":"text/html"});
-          response.end("페이지를 찾을 수 없습니다.");
+          res.writeHead(404, {"Content-Type":"text/html"});
+          res.end("페이지를 찾을 수 없습니다.");
         }
         else{
-          response.writeHead(500);
-          response.end(`서버 오류: ${err.code}`);
+          res.writeHead(500);
+          res.end(`서버 오류: ${err.code}`);
         }
       }
       else{
-        res.writeHead(200,{'Content-Tpye':'text/html; charset=utf-8'});
+        res.writeHead(200,{'Content-Tpye':'text/javascirpt; charset=utf-8'});
         res.write(data);
         res.end();
       }
@@ -37,9 +36,9 @@ const server = http.createServer((req,res)=>{
   }
 })
 
-server.listen(port,(err)=>{
+server.listen(8080,(err)=>{
   if(err){
     console.error(err)
   }
-  console.log(`http://locahost:${port}`)
+  console.log(`http://locahost:8080`)
 })
