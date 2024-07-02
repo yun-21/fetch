@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="content" name="content">
+    <button id="btn">전송하기</button>
+    <div>
+        <h1>당신이 쓴 내용 추출물</h1>
+        <h3 id = "h3"></h3>
+    </div>
+    <script>
+        const getId = (name, id) =>{
+            name = document.getElementById(id);
+        }
+        const allData = {
+            "name" : ['input','btn','h3']
+        }
+
+        const Map = (objName, type) => {
+            return objName[type].map((ele)=>{
+                getId(ele, ele)
+            })
+        }
+        Map(allData,'name')
+        h3.innerHTML="dd"
+    </script>
+</body>
+</html>
