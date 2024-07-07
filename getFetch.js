@@ -14,7 +14,7 @@ const getUrl = {
 }
 
 const server = http.createServer((req,res)=>{
-  let url = getUrl.filePath(req.url);
+  const url = getUrl.filePath(req.url);
   if(req.method==='GET'){
     fs.readFile(url, (err,data)=>{
       if(err){
@@ -28,7 +28,7 @@ const server = http.createServer((req,res)=>{
         }
       }
       else{
-        res.writeHead(200,{'Content-Tpye':'text/javascirpt; charset=utf-8'});
+        res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});
         res.write(data);
         res.end();
       }
@@ -40,5 +40,5 @@ server.listen(8080,(err)=>{
   if(err){
     console.error(err)
   }
-  console.log(`http://locahost:8080`)
+  console.log(`http://localhost:8080`)
 })
