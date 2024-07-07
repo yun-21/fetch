@@ -20,17 +20,16 @@
             "name" : ['input','btn','h3']
         }
 
-        const Map = (objName, type) => {
+        const Maps = (objName, type) => {
             return objName[type].map((ele)=>{
                 getId(ele, ele)
             })
         }
-        Map(allData,'name')
+        Maps(allData,'name')
         btn.addEventListener('click',()=>{
             fetch("/data")
             .then(response => response.json())
             .then(json => h3.innerText = json.message)
-
         })
     </script>
 </body>
